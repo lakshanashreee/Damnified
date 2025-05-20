@@ -1,9 +1,8 @@
-
 import React from "react";
-//import '../index.css';
- // or wherever you put the CSS
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const sections = ["About", "Skills", "Projects", "Contact", "Resume", "Internship"];
 
   return (
@@ -14,7 +13,11 @@ export default function Home() {
       </p>
       <div className="section-buttons">
         {sections.map((section) => (
-          <button key={section} className="section-button" onClick={() => alert(`Go to ${section}`)}>
+          <button
+            key={section}
+            className="section-button"
+            onClick={() => navigate(`/${section.toLowerCase()}`)}
+          >
             {section}
           </button>
         ))}
