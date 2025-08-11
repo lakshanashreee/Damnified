@@ -1,0 +1,7 @@
+.circular-text {
+  margin: 0;
+  border-radius: 50%;
+  position: relative;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+}

@@ -1,0 +1,22 @@
+.magnetLines-container {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 0.1vmin; /* Match JSX gap for consistency */
+}
+
+.magnetLines-container span {
+  display: block;
+  transform-origin: center;
+  will-change: transform;
+  transform: rotate(var(--rotate));
+  background-color: var(--line-color, #ffffff);
+  border-radius: 1px; /* Reduced for smaller lines */
+  margin: 0; /* Ensure no extra spacing */
+}

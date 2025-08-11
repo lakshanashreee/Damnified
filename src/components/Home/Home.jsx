@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CircularText from "./CircularText";
 import TargetCursor from "./TargetCursor";
 import Cubes from "./Cubes";
+import Orb from "./Orb";
 import "./Home.css";
 
 function TextPressure({ children }) {
@@ -35,7 +36,7 @@ function TextPressure({ children }) {
 
 export default function Home() {
   const navigate = useNavigate();
-  const sections = ["About", "Skills", "Projects", "Contact", "Resume", "Internship"];
+  const sections = ["About", "Skills", "Projects", "Contact", "Resume", "Experience"];
   const [visibleElements, setVisibleElements] = useState({
     title: false,
     subtitle: false,
@@ -98,20 +99,36 @@ export default function Home() {
 
   return (
     <div className="home-container" ref={homeContainerRef}>
+      {/* Fixed Orb Background */}
+      <div style={{ 
+        width: '100%', 
+        height: '100vh', 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        zIndex: -1,
+        pointerEvents: 'none' 
+      }}>
+        <Orb
+          hoverIntensity={0.5}
+          rotateOnHover={true}
+          hue={0}
+          forceHoverState={false}
+        />
+      </div>
       {/* Cubes Background */}
       <Cubes
         gridSize={8}
         maxAngle={60}
         radius={4}
-        borderStyle="2px dashed var(--text)"
-        faceColor="var(--background)"
+        borderStyle="var(--cube-face-border)"
+        faceColor="var(--cube-face-bg)"
         rippleColor="var(--accent)"
         rippleSpeed={1.5}
         autoAnimate={true}
         rippleOnClick={true}
         className="cubes-background"
       />
-
       {/* Target Cursor Component */}
       <TargetCursor
         targetSelector=".section-button"
@@ -195,6 +212,24 @@ export default function Home() {
           </svg>
         </button>
       )}
+
+      {/* Touch Icon (Decorative, Non-Interactive) */}
+      <div className="touch-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 15.5l-3-3m0 0l-3-3m3 3v9m3-9h9m-3-9l-3-3m0 0l-3 3"
+          />
+        </svg>
+      </div>
 
       {/* Main Content with Text Pressure Effect */}
       <h1 className={`home-title ${visibleElements.title ? "pop-in" : ""}`}>

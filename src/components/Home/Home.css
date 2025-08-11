@@ -1,0 +1,372 @@
+/* Define CSS custom properties for theming */
+:root {
+  /* Light mode variables */
+  --background: #ffffff;
+  --text: #000000;
+  --background-text: rgba(240, 230, 255, 0.2);
+  --button-bg: #ffffff;
+  --button-border: #000000;
+  --button-hover-bg: #f8bbd0;
+  --button-hover-border: #f48fb1;
+  --accent: #e1bee7;
+  --accent-hover: #f48fb1;
+  --button-2-bg: #ffffff;
+  --button-2-border: #000000;
+  --button-3-bg: #ffffff;
+  --button-3-border: #000000;
+  --button-4-bg: #ffffff;
+  --button-4-border: #000000;
+  --button-5-bg: #ffffff;
+  --button-5-border: #000000;
+  --button-6-bg: #ffffff;
+  --button-6-border: #000000;
+  --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --circular-text-color: #000000;
+  --cube-face-border: 1px solid rgba(0, 0, 0, 0.7);
+  --cube-face-bg: #d8e2ff;
+}
+
+[data-theme="dark"] {
+  /* Dark mode variables */
+  --background: #1a1a1a;
+  --text: #ffffff;
+  --background-text: rgba(100, 100, 100, 0.2);
+  --button-bg: #2c2c2c;
+  --button-border: #ffffff;
+  --button-hover-bg: #ff6b6b;
+  --button-hover-border: #ff8787;
+  --accent: #4a4a4a;
+  --accent-hover: #ff6b6b;
+  --button-2-bg: #2c2c2c;
+  --button-2-border: #ffffff;
+  --button-3-bg: #2c2c2c;
+  --button-3-border: #ffffff;
+  --button-4-bg: #2c2c2c;
+  --button-4-border: #ffffff;
+  --button-5-bg: #2c2c2c;
+  --button-5-border: #ffffff;
+  --button-6-bg: #2c2c2c;
+  --button-6-border: #ffffff;
+  --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --circular-text-color: #ffffff;
+  --cube-face-border: 1px solid rgba(255, 255, 255, 0.7);
+  --cube-face-bg: #4a4a66;
+}
+
+/* Minimalistic, professional design */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font-family: -apple-system, 'SF Pro', 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 400;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Cubes background styling */
+.cubes-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: auto;
+}
+
+/* Background text (subtle overlay) */
+.home-container::before {
+  content: "PORTFOLIO";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  color: var(--background-text);
+  z-index: 0;
+  pointer-events: none;
+  font-family: -apple-system, 'SF Pro', 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Pop-in animation for main page elements */
+.home-title,
+.home-subtitle,
+.section-button {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1;
+}
+
+.pop-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Title styling */
+.home-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  font-family: -apple-system, 'SF Pro', 'Helvetica Neue', 'Arial', sans-serif;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  text-shadow: var(--text-shadow);
+}
+
+/* Text pressure effect */
+.text-pressure {
+  display: inline-block;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.text-pressure:hover {
+  text-shadow: 0 4px 8px var(--text-shadow);
+}
+
+/* Subtitle styling */
+.home-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--text);
+  font-family: -apple-system, 'SF Pro', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+/* Button container */
+.section-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Button styling */
+.section-button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text);
+  background: var(--button-bg);
+  border: 2px solid var(--button-border);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: -apple-system, 'SF Pro', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.section-button:nth-child(2) {
+  background: var(--button-2-bg);
+  border-color: var(--button-2-border);
+}
+
+.section-button:nth-child(3) {
+  background: var(--button-3-bg);
+  border-color: var(--button-3-border);
+}
+
+.section-button:nth-child(4) {
+  background: var(--button-4-bg);
+  border-color: var(--button-4-border);
+}
+
+.section-button:nth-child(5) {
+  background: var(--button-5-bg);
+  border-color: var(--button-5-border);
+}
+
+.section-button:nth-child(6) {
+  background: var(--button-6-bg);
+  border-color: var(--button-6-border);
+}
+
+.section-button:hover {
+  transform: scale(1.05);
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-border);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-hover);
+  transform: scale(1.1);
+}
+
+.theme-toggle svg {
+  stroke: var(--text);
+}
+
+/* Tie symbol for fullscreen toggle */
+.tie-symbol {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.tie-symbol:hover {
+  background: var(--accent-hover);
+  transform: scale(1.1);
+}
+
+.tie-symbol svg {
+  stroke: var(--text);
+}
+
+/* Close button (appears on hover in fullscreen) */
+.close-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.home-container:hover .close-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+.close-button svg {
+  stroke: var(--text);
+}
+
+.close-button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.1);
+}
+
+/* Touch icon (decorative, non-interactive) */
+.touch-icon {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 2;
+  transition: all 0.3s ease;
+  pointer-events: none; /* Allow clicks to pass through to cubes */
+}
+
+.touch-icon:hover {
+  background: var(--accent-hover);
+  transform: scale(1.1);
+}
+
+.touch-icon svg {
+  stroke: var(--text);
+}
+
+/* Circular text styling */
+.circular-text-bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 150px;
+  font-family: -apple-system, 'SF Pro', 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 800;
+  color: var(--circular-text-color);
+  z-index: 10;
+}
+
+.circular-text-bottom-right span {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 18px;
+  transition: all 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2.5rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.2rem;
+    max-width: 90%;
+  }
+
+  .home-container::before {
+    font-size: 5rem;
+  }
+
+  .section-button {
+    padding: 10px 18px;
+    font-size: 1rem;
+  }
+
+  .theme-toggle,
+  .tie-symbol,
+  .close-button,
+  .touch-icon {
+    padding: 8px;
+  }
+
+  .theme-toggle svg,
+  .tie-symbol svg,
+  .close-button svg,
+  .touch-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .circular-text-bottom-right {
+    width: 100px;
+    height: 100px;
+  }
+
+  .circular-text-bottom-right span {
+    font-size: 14px;
+  }
+
+  .cubes-background {
+    transform: scale(0.9);
+  }
+}

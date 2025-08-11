@@ -122,3 +122,35 @@ body {
     transform: translateY(-8px);
   }
 }
+
+/* Add this inside your CSS, maybe under .home-container */
+
+.home-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveBlackDots 12s linear infinite;
+  z-index: 0;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@keyframes moveBlackDots {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+/* Adjust .home-container so it doesn't clip the overlay */
+.home-container {
+  position: relative;
+  z-index: 1;
+}
