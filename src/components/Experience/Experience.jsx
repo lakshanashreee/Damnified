@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Hyperspeed from './Hyperspeed';
-import './experience.css';
+import './Experience.css';
 
 const Experience = () => {
   const experiences = [
