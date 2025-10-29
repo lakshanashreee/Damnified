@@ -126,7 +126,7 @@ export default function Contact() {
         </svg>
       </Link>
       <Particles
-        particleColors={["#00d4ff", "#00aaff", "#0077cc"]}
+        particleColors={["#6600ffff", "#9c6bfeff", "#f088feff"]}
         particleCount={10000}
         speed={0.15}
         particleBaseSize={15}

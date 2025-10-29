@@ -51,7 +51,7 @@ export default function About() {
 
       <div className="about-content">
         <motion.img
-          src="\images\me3.jpg"
+          src="/images/laxxu.JPG"
           alt="Lakshana Avatar"
           className="avatar"
           animate={{ y: [0, -10, 0] }}

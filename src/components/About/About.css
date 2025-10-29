@@ -1,3 +1,5 @@
+/* About.css */
+
 .about-container {
   position: relative;
   height: 100vh;
@@ -29,6 +31,7 @@
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.8);
   animation: borderAnimation 5s infinite;
+  align-items: center; /* Added to vertically center image and text */
 }
 
 @keyframes borderAnimation {
@@ -66,6 +69,12 @@
 .about-text {
   color: #fff;
   font-family: 'Playfair Display', serif;
+  display: flex; /* Added to enable flexbox centering */
+  flex-direction: column; /* Stack text elements vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  text-align: center; /* Center text content */
+  flex: 1; /* Allow .about-text to take remaining space */
 }
 
 .about-text h2 {
