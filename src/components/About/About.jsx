@@ -60,10 +60,7 @@ export default function About() {
         <div className="about-text">
           <h2>About Me</h2>
           <p>
-            Hi! I'm Lakshana, a passionate developer who loves building beautiful, interactive web experiences.
-          </p>
-          <p>
-            I specialize in React and have a keen eye for design, ensuring that every project I undertake is both functional and aesthetically pleasing.
+            Full Stack Developer | Ex Intern @ NIC | Ex-Intern @ IIT Bombay | GITEX Global 2025 Exhibitor | Student Innovation Ambassador @ RIT | CSE Pre-Final Year
           </p>
         </div>
       </div>

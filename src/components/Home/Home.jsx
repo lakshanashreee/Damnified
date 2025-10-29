@@ -26,7 +26,7 @@ function TextPressure({ children }) {
       onMouseMove={handleMouseMove}
       style={{
         transform: `perspective(1000px) rotateY(${mousePosition.x * 10}deg) rotateX(${mousePosition.y * -10}deg)`,
-        display: 'inline-block',
+        display: "inline-block",
       }}
     >
       {children}
@@ -43,19 +43,19 @@ export default function Home() {
     buttons: Array(sections.length).fill(false),
   });
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "light");
   const homeContainerRef = useRef(null);
 
   // Handle theme toggle
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   // Apply theme to document
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   // Pop-up effect for main page elements
@@ -100,22 +100,20 @@ export default function Home() {
   return (
     <div className="home-container" ref={homeContainerRef}>
       {/* Fixed Orb Background */}
-      <div style={{ 
-        width: '100%', 
-        height: '100vh', 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        zIndex: -1,
-        pointerEvents: 'none' 
-      }}>
-        <Orb
-          hoverIntensity={0.5}
-          rotateOnHover={true}
-          hue={0}
-          forceHoverState={false}
-        />
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: -1,
+          pointerEvents: "none",
+        }}
+      >
+        <Orb hoverIntensity={0.5} rotateOnHover={true} hue={0} forceHoverState={false} />
       </div>
+
       {/* Cubes Background */}
       <Cubes
         gridSize={8}
@@ -129,18 +127,15 @@ export default function Home() {
         rippleOnClick={true}
         className="cubes-background"
       />
+
       {/* Target Cursor Component */}
-      <TargetCursor
-        targetSelector=".section-button"
-        spinDuration={2}
-        hideDefaultCursor={true}
-      />
+      <TargetCursor targetSelector=".section-button" spinDuration={2} hideDefaultCursor={true} />
 
       {/* Theme Toggle Button */}
       <button
         className="theme-toggle"
         onClick={toggleTheme}
-        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +144,7 @@ export default function Home() {
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          {theme === 'light' ? (
+          {theme === "light" ? (
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -168,11 +163,7 @@ export default function Home() {
       </button>
 
       {/* Tie Symbol for Fullscreen Toggle */}
-      <button
-        className="tie-symbol"
-        onClick={toggleFullscreen}
-        aria-label="Toggle Fullscreen"
-      >
+      <button className="tie-symbol" onClick={toggleFullscreen} aria-label="Toggle Fullscreen">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8"
@@ -191,11 +182,7 @@ export default function Home() {
 
       {/* Close Button (appears in fullscreen on hover) */}
       {isFullscreen && (
-        <button
-          className="close-button"
-          onClick={toggleFullscreen}
-          aria-label="Exit Fullscreen"
-        >
+        <button className="close-button" onClick={toggleFullscreen} aria-label="Exit Fullscreen">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-8"
@@ -203,12 +190,7 @@ export default function Home() {
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       )}
@@ -238,12 +220,21 @@ export default function Home() {
       <p className={`home-subtitle ${visibleElements.subtitle ? "pop-in" : ""}`}>
         Hi! I’m Lakshana, a passionate developer crafting beautiful, interactive web experiences.
       </p>
+
+      {/* SECTION BUTTONS – RESUME OPENS PDF */}
       <div className="section-buttons">
         {sections.map((section, index) => (
           <button
             key={section}
             className={`section-button ${visibleElements.buttons[index] ? "pop-in" : ""}`}
-            onClick={() => navigate(`/${section.toLowerCase()}`)}
+            onClick={() => {
+              if (section === "Resume") {
+                // PDF lives in /public → accessible as "/Resume_SDE.pdf"
+                window.open("/Resume_SDE.pdf", "_blank", "noopener,noreferrer");
+              } else {
+                navigate(`/${section.toLowerCase()}`);
+              }
+            }}
           >
             {section}
           </button>
