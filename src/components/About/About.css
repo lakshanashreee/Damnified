@@ -123,3 +123,31 @@
   z-index: 10000;
   transform: translate(-50%, -50%);
 }
+
+/* Mobile responsive layout without altering desktop */
+@media (max-width: 768px) {
+  .about-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 1rem 0;
+  }
+  .about-container::before {
+    font-size: 4rem;
+  }
+  .about-content {
+    width: 92%;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .avatar {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  .about-text h2 {
+    font-size: 1.5rem;
+  }
+  .about-text p {
+    font-size: 1rem;
+  }
+}

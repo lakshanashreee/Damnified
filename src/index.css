@@ -9,6 +9,16 @@ body {
   color: #4a4a4a; /* dark grey for readability */
 }
 
+/* Global responsive defaults */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 .home-container {
   height: 100vh;                /* from reference */
   display: flex;                /* from reference */
@@ -153,4 +163,18 @@ body {
 .home-container {
   position: relative;
   z-index: 1;
+}
+
+/* Mobile tweaks without affecting desktop */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2.2rem;
+  }
+  .home-subtitle {
+    font-size: 1rem;
+  }
+  .section-button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
 }

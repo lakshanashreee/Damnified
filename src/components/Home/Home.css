@@ -298,6 +298,41 @@
   stroke: var(--text);
 }
 
+/* Responsive adjustments for mobile (preserve desktop styles) */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+  }
+  .home-container::before {
+    font-size: 4rem;
+    opacity: 0.12;
+  }
+  .home-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .home-subtitle {
+    font-size: 1rem;
+    max-width: 90vw;
+    margin-bottom: 1.5rem;
+  }
+  .section-buttons {
+    gap: 10px;
+  }
+  .section-button {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    border-radius: 18px;
+  }
+  .theme-toggle,
+  .tie-symbol,
+  .touch-icon {
+    top: 12px;
+    left: 12px;
+    padding: 8px;
+  }
+}
+
 /* Circular text styling */
 .circular-text-bottom-right {
   position: absolute;

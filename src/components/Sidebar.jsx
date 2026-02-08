@@ -17,7 +17,7 @@ export default function Sidebar({ currentSection, setCurrentSection }) {
     <motion.nav
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      className="fixed top-0 left-0 h-full w-20 bg-gray-900 flex flex-col items-center py-8 space-y-6"
+      className="fixed top-0 left-0 h-full w-20 bg-gray-900 flex-col items-center py-8 space-y-6 hidden md:flex"
     >
       {links.map(({ name, icon: Icon, id }) => (
         <button
