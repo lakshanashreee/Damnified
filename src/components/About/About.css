@@ -1,5 +1,4 @@
 /* About.css */
-
 .about-container {
   position: relative;
   height: 100vh;
@@ -8,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 
 .about-container::before {
@@ -16,90 +16,79 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10rem;
+  font-size: clamp(5rem, 20vw, 12rem);
   color: rgba(255, 255, 255, 0.05);
   z-index: 1;
   pointer-events: none;
+  font-weight: 900;
+  letter-spacing: -0.05em;
 }
 
 .about-content {
   position: relative;
   display: flex;
-  width: 75%;
-  border: 2px solid #fff;
-  padding: 2rem;
+  width: 80%;
+  max-width: 1000px;
+  padding: 3rem;
   z-index: 3;
-  background-color: rgba(0, 0, 0, 0.8);
-  animation: borderAnimation 5s infinite;
-  align-items: center; /* Added to vertically center image and text */
-}
-
-@keyframes borderAnimation {
-  0% {
-    border-color: #fff;
-  }
-  50% {
-    border-color: #ccc;
-  }
-  100% {
-    border-color: #fff;
-  }
+  background: rgba(28, 28, 30, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  align-items: center;
 }
 
 .avatar {
-  width: 25%;
-  margin-right: 2rem;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  width: 200px;
+  height: 200px;
+  margin-right: 3rem;
+  border-radius: 40px; /* iOS Squircle-like radius */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .about-text {
   color: #fff;
-  font-family: 'Playfair Display', serif;
-  display: flex; /* Added to enable flexbox centering */
-  flex-direction: column; /* Stack text elements vertically */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  text-align: center; /* Center text content */
-  flex: 1; /* Allow .about-text to take remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  flex: 1;
 }
 
 .about-text h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: 1rem;
+  letter-spacing: -0.03em;
 }
 
 .about-text p {
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  opacity: 0.85;
 }
 
 .home-button {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 24px;
+  left: 24px;
   z-index: 4;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px;
   transition: all 0.3s ease;
+  color: #fff;
 }
 
 .home-button:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
 }
 
@@ -110,44 +99,38 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
-.dot-cursor {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background-color: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-}
-
-/* Mobile responsive layout without altering desktop */
+/* Mobile responsive layout */
 @media (max-width: 768px) {
   .about-container {
     height: auto;
     min-height: 100vh;
-    padding: 1rem 0;
-  }
-  .about-container::before {
-    font-size: 4rem;
+    padding: 80px 0;
   }
   .about-content {
-    width: 92%;
+    width: 90%;
     flex-direction: column;
-    padding: 1rem;
+    padding: 2rem;
+    border-radius: 24px;
+    text-align: center;
   }
   .avatar {
-    width: 50%;
+    width: 160px;
+    height: 160px;
     margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 32px;
+  }
+  .about-text {
+    align-items: center;
+    text-align: center;
   }
   .about-text h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .about-text p {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
-}
+}

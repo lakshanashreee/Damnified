@@ -40,7 +40,7 @@ export default function About() {
 
       <MagnetLines
         rows={18}
-        columns={12}
+        columns={window.innerWidth < 768 ? 6 : 12}
         containerSize="100vw"
         lineColor="#ffffff"
         lineWidth="0.8vmin"

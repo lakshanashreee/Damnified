@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
-import "./DotCursor.jsx";
+// styles are in About.css
 
 const DotCursor = () => {
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768;
+  if (isTouchDevice) return null;
+
   const dotRef = useRef(null);
 
   useEffect(() => {

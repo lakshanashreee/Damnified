@@ -172,41 +172,43 @@ const Experience = () => {
       <div className="max-w-5xl mx-auto px-4 relative z-10">
         <h2 className="text-4xl font-bold text-center text-white mb-16">My Professional Journey</h2>
         <div className="relative min-h-[1600px]">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-blue-600 h-full z-0 timeline-line"></div>
+          <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-1 bg-blue-600 h-full z-0 timeline-line"></div>
           {experiences.map((exp, index) => (
             <div
               key={exp.id}
               ref={(el) => (itemsRef.current[index] = el)}
-              className={`roadmap-item flex mb-24 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+              className={`roadmap-item flex flex-col md:flex-row mb-16 md:mb-24 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               style={{ '--delay': `${index * 0.3}s` }}
             >
-              <div className="w-7/12 px-9">
+              <div className="w-full md:w-7/12 px-4 md:px-9 ml-8 md:ml-0">
                 <div
                   className={`card-container ${flippedCards[exp.id] ? 'flipped' : ''}`}
                   onClick={() => handleCardClick(exp.id)}
                 >
-                  <div className="card-front bg-white p-8 rounded-xl shadow-xl">
-                    <h3 className="text-2xl font-semibold text-gray-800 mb-2">{exp.role}</h3>
-                    <h4 className="text-xl text-gray-600 mb-2">{exp.company} - {exp.location}</h4>
-                    <p className="text-sm text-gray-500 mb-4">{exp.duration}</p>
-                    <p className="text-gray-700">{exp.description}</p>
+                  <div className="card-front p-6 md:p-8">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2 tracking-tight">{exp.role}</h3>
+                    <h4 className="text-lg md:text-xl text-white/70 mb-1 md:mb-2">{exp.company}</h4>
+                    <p className="text-xs md:text-sm text-white/40 mb-3 md:mb-4 uppercase tracking-widest">{exp.duration}</p>
+                    <p className="text-sm md:text-base text-white/80 leading-relaxed">{exp.description}</p>
                   </div>
-                  <div className="card-back bg-blue-50 p-8 rounded-xl shadow-xl">
-                    <h3 className="text-2xl font-semibold text-gray-800 mb-3">{exp.company}</h3>
+                  <div className="card-back p-6 md:p-8">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3">{exp.company}</h3>
                     <a
                       href={exp.companyLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline mb-4 block"
+                      className="text-blue-400 hover:text-blue-300 transition-colors mb-3 md:mb-4 block text-sm md:text-base font-medium"
                     >
-                      Visit Company Website
+                      Visit Company Website →
                     </a>
-                    <h4 className="text-lg font-medium text-gray-700 mb-1">Tech Stack:</h4>
-                    <ul className="list-disc list-inside mb-4">
+                    <h4 className="text-sm md:text-base font-semibold text-white/60 mb-2 uppercase tracking-wider">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-2">
                       {exp.techStack.map((tech, i) => (
-                        <li key={i} className="text-gray-600">{tech}</li>
+                        <span key={i} className="px-2 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-white/70">
+                          {tech}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                     {exp.certificateLink && (
                       <a
                         href={exp.certificateLink}
@@ -220,10 +222,10 @@ const Experience = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-2/12 flex items-center justify-center">
-                <div className="w-6 h-6 bg-blue-600 rounded-full z-10"></div>
+              <div className="absolute left-4 md:relative md:left-0 md:w-2/12 flex items-center justify-center">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-blue-600 rounded-full z-10 shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
               </div>
-              <div className="w-5/12"></div>
+              <div className="hidden md:block md:w-5/12"></div>
             </div>
           ))}
         </div>

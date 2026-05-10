@@ -1,89 +1,65 @@
-/* Ensure no conflicting backgrounds */
-body {
-  background: transparent !important;
-  margin: 0;
-  padding: 0;
-}
-
+/* Project.css */
 .projects-page {
   min-height: 100vh;
   position: relative;
-  padding: 4rem 1.5rem;
-  font-family: 'Times New Roman', Georgia, serif;
+  padding: 80px 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
   background: transparent;
-  color: #1a1a1a; /* Dark gray for text */
-}
-
-.background-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  overflow: hidden;
+  color: #ffffff;
 }
 
 .background-container canvas {
-  width: 100vw !important;
-  height: 100vh !important;
-  display: block !important;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacity: 0.8; /* Subtle opacity for Silk background */
+  opacity: 0.6;
 }
 
 .home-button {
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 24px;
+  right: 24px;
   z-index: 1000;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
   width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .home-button:hover {
-  background: #f5f5f5;
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 .home-icon {
-  width: 1.75rem;
-  height: 1.75rem;
-  color: #333333;
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
 }
 
 .page-title {
-  font-family: 'Times New Roman', bold, Georgia, serif;
-  font-weight: bold;
-  font-size: 2.6rem;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 800;
   text-align: center;
-  color: #ffffff;
   margin-bottom: 1rem;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.04em;
   position: relative;
   z-index: 10;
 }
 
 .page-intro {
-  font-family: 'Times New Roman', Georgia, serif;
-  font-weight: normal;
   font-size: 1.15rem;
   text-align: center;
-  color: #ffffff;
-  margin-bottom: 2.5rem;
-  max-width: 800px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4rem;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.8;
+  line-height: 1.5;
   position: relative;
   z-index: 10;
 }
@@ -91,33 +67,24 @@ body {
 .projects-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  max-width: 1200px;
+  gap: 24px;
+  max-width: 1100px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
 }
 
-.no-projects {
-  font-family: 'Times New Roman', Georgia, serif;
-  font-weight: normal;
-  font-size: 1.15rem;
-  text-align: center;
-  color: #4a4a4a;
-  padding: 2rem;
-  position: relative;
-  z-index: 10;
-}
-
 .project-card {
-  background: rgba(255, 255, 255, 0.95); /* Glassmorphism effect */
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
+  background: rgba(28, 28, 30, 0.6);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease-out, opacity 0.4s ease-out, scale 0.4s ease-out;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;
-  transform: translateY(20px) scale(0.95);
+  transform: translateY(30px) scale(0.95);
 }
 
 .project-card.card-animate {
@@ -126,139 +93,101 @@ body {
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: scale(1.03) translateY(-8px);
+  border-color: rgba(0, 122, 255, 0.4);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
 }
 
 .project-header {
   width: 100%;
-  height: 100px;
+  height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem;
-  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
 }
 
 .project-header .project-title {
-  font-family: 'Times New Roman', Georgia, serif;
-  font-weight: bold;
-  font-size: 1.6rem;
+  font-weight: 800;
+  font-size: 1.75rem;
   color: #ffffff;
   text-align: center;
   margin: 0;
+  letter-spacing: -0.03em;
 }
 
 .project-content {
-  padding: 1.25rem;
-  text-align: center;
+  padding: 2rem;
+  text-align: left;
 }
 
 .project-description {
-  font-family: 'Times New Roman', Georgia, serif;
-  font-weight: normal;
-  font-size: 0.95rem;
-  color: #4a4a4a;
-  margin-bottom: 1rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  gap: 8px;
+  margin-bottom: 2rem;
 }
 
 .tech-tag {
-  font-family: 'Times New Roman', Georgia, serif;
-  font-weight: normal;
-  background: #f5f5f5;
-  padding: 0.3rem 0.8rem;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  color: #333333;
-  border: 1px solid #d0d0d0;
-  transition: background-color 0.2s ease;
-}
-
-.tech-tag:hover {
-  background: #e0e0e0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .project-link {
-  font-family: 'Times New Roman', Georgia, serif;
-  font-weight: bold;
-  display: inline-block;
-  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #007AFF;
   color: #ffffff;
-  padding: 0.6rem 1.25rem;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 14px;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .project-link:hover {
-  background: #333333;
+  background: #0056b3;
   transform: translateY(-2px);
 }
 
 .project-link.disabled {
-  background: #cccccc;
-  color: #666666;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
   cursor: not-allowed;
-  transform: none;
-}
-
-.project-link.disabled:hover {
-  background: #cccccc;
-  transform: none;
 }
 
 @media (max-width: 1024px) {
   .projects-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-
-  .page-title {
-    font-size: 2.3rem;
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 768px) {
   .projects-container {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 20px;
   }
-
-  .page-title {
-    font-size: 1.9rem;
-  }
-
   .page-intro {
-    font-size: 1.05rem;
+    padding: 0 20px;
   }
-
   .project-header {
-    height: 80px;
+    height: 110px;
   }
-
-  .project-header .project-title {
-    font-size: 1.4rem;
-  }
-
-  .home-button {
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-  }
-
-  .home-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-}
+}

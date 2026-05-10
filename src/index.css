@@ -1,12 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-body {
+:root {
+  --ios-bg: rgba(255, 255, 255, 0.7);
+  --ios-blur: 20px;
+  --ios-border: rgba(255, 255, 255, 0.3);
+  --ios-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  --ios-radius: 20px;
+  --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --accent: #007AFF; /* Classic iOS Blue */
+}
+
+[data-theme="dark"] {
+  --ios-bg: rgba(28, 28, 30, 0.7);
+  --ios-border: rgba(255, 255, 255, 0.1);
+  --ios-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Playfair Display', serif;
-  background: linear-gradient(135deg, #dbe9f4, #f7f4f3); /* pastel blue to soft cream */
-  color: #4a4a4a; /* dark grey for readability */
+  font-family: var(--font-ios);
+  background: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* Glassmorphism Utility */
+.glass-panel {
+  background: var(--ios-bg);
+  backdrop-filter: blur(var(--ios-blur));
+  -webkit-backdrop-filter: blur(var(--ios-blur));
+  border: 1px solid var(--ios-border);
+  border-radius: var(--ios-radius);
+  box-shadow: var(--ios-shadow);
+}
+
+/* Premium Spring Transitions */
+* {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* iOS-like bounce */
 }
 
 /* Global responsive defaults */
@@ -19,162 +57,44 @@ img, video, canvas {
   height: auto;
 }
 
-.home-container {
-  height: 100vh;                /* from reference */
-  display: flex;                /* from reference */
-  flex-direction: column;       /* from reference */
-  justify-content: center;      /* from reference */
-  align-items: center;          /* from reference */
-  text-align: center;
-  padding: 2rem;                /* from reference */
-}
-
-.home-title {
-  font-size: 4rem;              /* from reference */
-  font-weight: 700;             /* bold */
-  margin-bottom: 1rem;          /* from reference */
-  text-shadow: 0 0 8px #c6d8f9, 0 0 15px #a1b8f2; /* pastel glow */
-  animation: shine 3s infinite alternate;
-  background: linear-gradient(90deg, #7d8f69, #b2a374, #7a6c5d); /* subtle gradient - optional if you want to keep */
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  position: relative;
-}
-
-.home-subtitle {
-  font-size: 1.5rem;            /* from reference */
-  margin-bottom: 3rem;          /* from reference */
-  color: #7f8c8d;               /* muted slate grey */
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section-buttons {
-  display: flex;
-  gap: 1.5rem;                  /* from reference */
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
+/* iOS Button Feel */
 .section-button {
-  background: linear-gradient(45deg, #a8dadc, #f1faee); /* pastel teal to cream */
-  color: #1d3557;              /* deep blue */
-  border: none;
-  border-radius: 12px;         /* from reference */
-  padding: 1rem 2rem;          /* from reference */
-  font-weight: 700;            /* from reference */
-  font-size: 1.25rem;          /* from reference */
+  font-family: var(--font-ios);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 14px;
+  padding: 12px 24px;
+  background: var(--ios-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--ios-border);
+  color: var(--text);
+  box-shadow: var(--ios-shadow);
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(168, 218, 220, 0.4); /* pastel shadow */
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-.section-button::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 40%);
-  transform: rotate(45deg);
-  transition: all 0.5s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.section-button:hover::before {
-  opacity: 1;
-  top: 0;
-  left: 0;
-}
-
-.section-button:hover {
-  box-shadow: 0 6px 20px rgba(168, 218, 220, 0.6);
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #457b9d, #1d3557); /* deeper pastel blue hover */
-  color: #f1faee;
+.section-button:active {
+  transform: scale(0.94);
+  background: rgba(120, 120, 120, 0.2);
 }
 
 /* Animations */
-@keyframes jump {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+@keyframes ios-pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-@keyframes shine {
-  0%, 100% {
-    background-position: 0% 50%;
-    text-shadow: 0 0 5px #c6d8f9, 0 0 10px #a1b8f2;
-  }
-  50% {
-    background-position: 100% 50%;
-    text-shadow: 0 0 15px #c6d8f9, 0 0 25px #a1b8f2;
-  }
-}
-.section-button {
-  animation: jump 1.5s infinite ease-in-out;
+.pop-in {
+  animation: ios-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-@keyframes jump {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* Typography refinements */
+h1, h2, h3 {
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
-/* Add this inside your CSS, maybe under .home-container */
-
-.home-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#000 1px, transparent 1px);
-  background-size: 20px 20px;
-  animation: moveBlackDots 12s linear infinite;
-  z-index: 0;
-  opacity: 0.1;
-  pointer-events: none;
+p {
+  line-height: 1.5;
+  opacity: 0.9;
 }
 
-@keyframes moveBlackDots {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 20px 20px;
-  }
-}
-
-/* Adjust .home-container so it doesn't clip the overlay */
-.home-container {
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile tweaks without affecting desktop */
-@media (max-width: 768px) {
-  .home-title {
-    font-size: 2.2rem;
-  }
-  .home-subtitle {
-    font-size: 1rem;
-  }
-  .section-button {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-  }
-}

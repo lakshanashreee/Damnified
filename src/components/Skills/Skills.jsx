@@ -239,17 +239,25 @@ const SkillCard = ({ skill, isCenter, isHovered, onMouseEnter, onMouseLeave }) =
 
   return (
     <motion.div
-      className={`relative flex flex-col items-center justify-center rounded-2xl p-8 text-center transition-all duration-500 cursor-pointer ${
+      className={`relative flex flex-col items-center justify-center rounded-[32px] p-6 md:p-10 text-center transition-all duration-700 cursor-pointer ${
         isCenter
           ? isHovered
-            ? "bg-black shadow-2xl scale-110 z-30"
-            : "bg-black shadow-xl scale-100 z-20"
-          : "bg-black opacity-60 scale-75 z-10"
-      } border border-gray-500`}
+            ? "bg-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] scale-110 z-30"
+            : "bg-white/10 backdrop-blur-xl shadow-2xl scale-100 z-20"
+          : "bg-white/5 backdrop-blur-md opacity-40 scale-75 z-10"
+      } border border-white/10`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={handleClick}
-      style={{ width: isCenter ? "32vw" : "20vw", height: "50vh", perspective: "1000px" }}
+      style={{ 
+        width: isCenter 
+          ? (window.innerWidth < 768 ? "85vw" : "32vw") 
+          : (window.innerWidth < 768 ? "0" : "20vw"), 
+        height: window.innerWidth < 768 ? "35vh" : "50vh", 
+        perspective: "1000px",
+        display: !isCenter && window.innerWidth < 768 ? "none" : "flex",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"
+      }}
     >
       <AnimatePresence>
         {isFlipped ? (
@@ -268,18 +276,18 @@ const SkillCard = ({ skill, isCenter, isHovered, onMouseEnter, onMouseLeave }) =
         ) : (
           <motion.div
             key="front"
-            className="absolute inset-0 flex flex-col items-center justify-center"
+            className="absolute inset-0 flex flex-col items-center justify-center p-4"
             initial={{ rotateY: 180 }}
             animate={{ rotateY: 0 }}
             exit={{ rotateY: 180 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
             style={{ backfaceVisibility: "hidden" }}
           >
-            <div className="text-7xl mb-6 text-white">{skill.icon}</div>
-            <h3 className="text-3xl font-bold mb-4 text-white">{skill.title}</h3>
-            <div className="flex flex-wrap justify-center gap-3 px-2">
+            <div className="text-6xl md:text-8xl mb-6 md:mb-8 text-white drop-shadow-2xl">{skill.icon}</div>
+            <h3 className="text-2xl md:text-4xl font-bold mb-3 md:mb-5 text-white tracking-tight">{skill.title}</h3>
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 px-2">
               {skill.techIcons.map((icon, index) => (
-                <div key={index} className="text-white">
+                <div key={index} className="text-white transform scale-90 md:scale-110 opacity-90 hover:opacity-100 transition-opacity">
                   {icon}
                 </div>
               ))}
@@ -292,10 +300,17 @@ const SkillCard = ({ skill, isCenter, isHovered, onMouseEnter, onMouseLeave }) =
 };
 
 export default function SkillsPage() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [direction, setDirection] = useState(0);
   const intervalRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const prevSlide = () => {
     setDirection(-1);
@@ -328,8 +343,8 @@ export default function SkillsPage() {
 
   const cardVariants = {
     center: { x: 0, scale: 1, opacity: 1, zIndex: 20 },
-    left: { x: "-30vw", scale: 0.75, opacity: 0.6, zIndex: 10 },
-    right: { x: "30vw", scale: 0.75, opacity: 0.6, zIndex: 10 },
+    left: { x: windowWidth < 768 ? "-100vw" : "-30vw", scale: 0.75, opacity: 0.6, zIndex: 10 },
+    right: { x: windowWidth < 768 ? "100vw" : "30vw", scale: 0.75, opacity: 0.6, zIndex: 10 },
     exit: (dir) => ({
       x: dir > 0 ? "-100vw" : "100vw",
       opacity: 0,
@@ -397,10 +412,10 @@ export default function SkillsPage() {
           className="custom-rays"
         />
       </div>
-      <h2 className="text-5xl font-bold mb-12 text-white relative z-10">My Skills</h2>
-      <div className="relative flex items-center justify-center w-full h-[70vh] z-10">
-        <button onClick={prevSlide} className="absolute left-4 z-30 p-3">
-          <ChevronLeft className="w-12 h-12 text-gray-700 hover:text-black" />
+      <h2 className="text-4xl md:text-6xl font-extrabold mb-10 md:mb-16 text-white relative z-10 tracking-tighter">My Skills</h2>
+      <div className="relative flex items-center justify-center w-full h-[50vh] md:h-[70vh] z-10">
+        <button onClick={prevSlide} className="absolute left-2 md:left-6 z-30 p-3 md:p-4 bg-white/10 rounded-full backdrop-blur-xl border border-white/10 hover:bg-white/20 transition-all active:scale-90">
+          <ChevronLeft className="w-6 h-6 md:w-8 md:h-8 text-white" />
         </button>
 
         <div className="flex gap-8 justify-center items-center w-full h-full">
@@ -450,8 +465,8 @@ export default function SkillsPage() {
           </AnimatePresence>
         </div>
 
-        <button onClick={nextSlide} className="absolute right-4 z-30 p-3">
-          <ChevronRight className="w-12 h-12 text-gray-700 hover:text-black" />
+        <button onClick={nextSlide} className="absolute right-2 md:right-6 z-30 p-3 md:p-4 bg-white/10 rounded-full backdrop-blur-xl border border-white/10 hover:bg-white/20 transition-all active:scale-90">
+          <ChevronRight className="w-6 h-6 md:w-8 md:h-8 text-white" />
         </button>
       </div>
     </div>

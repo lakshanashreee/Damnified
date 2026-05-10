@@ -7,6 +7,9 @@ const TargetCursor = ({
   spinDuration = 2,
   hideDefaultCursor = true,
 }) => {
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768;
+  if (isTouchDevice) return null;
+
   const cursorRef = useRef(null);
   const cornersRef = useRef(null);
   const spinTl = useRef(null);
