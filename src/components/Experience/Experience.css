@@ -77,11 +77,12 @@ body, html {
 
 @media (max-width: 768px) {
   .card-container {
-    min-height: 220px;
+    min-height: 380px; /* Increased to fit long text on first card */
     max-width: 100%;
   }
   .card-front, .card-back {
     padding: 1.25rem !important;
     border-radius: 20px;
+    overflow-y: auto; /* Add scrolling inside card if text is too long */
   }
 }

@@ -107,7 +107,7 @@ export default function Home() {
           position: "fixed",
           top: 0,
           left: 0,
-          zIndex: -1,
+          zIndex: 0,
           pointerEvents: "none",
         }}
       >

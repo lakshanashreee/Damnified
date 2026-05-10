@@ -95,13 +95,21 @@ const CircularText = ({
     >
       {letters.map((letter, i) => {
         const rotationDeg = (360 / letters.length) * i;
-        const factor = Math.PI / letters.length;
-        const x = factor * i;
-        const y = factor * i;
-        const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
+        const transform = `translateX(-50%) rotateZ(${rotationDeg}deg)`;
 
         return (
-          <span key={i} style={{ transform, WebkitTransform: transform }}>
+          <span key={i} style={{ 
+            position: "absolute",
+            top: 0,
+            left: "50%",
+            height: "50%",
+            transformOrigin: "bottom center",
+            transform, 
+            WebkitTransform: transform,
+            fontWeight: "700",
+            fontSize: "14px",
+            letterSpacing: "2px"
+          }}>
             {letter}
           </span>
         );
